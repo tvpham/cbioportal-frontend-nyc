@@ -41,7 +41,6 @@ export default class QueryContainer extends React.Component<QueryContainerProps,
 		super();
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-
 	}
 
 	get store()
@@ -62,16 +61,13 @@ export default class QueryContainer extends React.Component<QueryContainerProps,
 			<FlexCol padded overflow className={styles.QueryContainer}>
 				<CancerStudySelector/>
 
-				{!!(this.store.singleSelectedStudyId) && (
-					<GeneticProfileSelector/>
-				)}
+				{this.store.isVirtualCohortQuery ?
+					(<DataTypePrioritySelector/>) :
+					(<GeneticProfileSelector/>)
+				}
 
-				{!!(this.store.singleSelectedStudyId) && (
+				{(this.store.selectedStudyIds.length > 0) && (
 					<CaseSetSelector/>
-				)}
-
-				{!!(!this.store.singleSelectedStudyId) && (
-					<DataTypePrioritySelector/>
 				)}
 
 				<GeneSetSelector/>
@@ -93,8 +89,8 @@ export default class QueryContainer extends React.Component<QueryContainerProps,
 				)}
 
 				<FlexRow padded className={styles.submitRow}>
-					<button style={{paddingLeft:50, paddingRight:50, marginRight:50 }} disabled={!this.store.submitEnabled} className="btn btn-primary btn-lg" onClick={() => this.handleSubmit()}>
-						Submit Query
+					<button style={{paddingLeft:50, paddingRight:50, marginRight:50 }} disabled={!this.store.submitEnabled} className={classNames('cta btn btn-primary btn-lg', styles.submit)} onClick={() => this.handleSubmit()}>
+						Submit
 					</button>
 					{!!(this.store.forDownloadTab && AppConfig.genomespaceEnabled) && (
 						<button disabled={!this.store.submitEnabled} className={styles.genomeSpace} onClick={ ()=>this.store.sendToGenomeSpace() }>

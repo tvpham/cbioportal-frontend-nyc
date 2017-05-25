@@ -4,6 +4,7 @@ import RightBar from "./shared/components/rightbar/RightBar";
 import {QueryStore} from "./shared/components/query/QueryStore";
 import QueryModal from "./shared/components/query/QueryModal";
 import QueryAndDownloadTabs from "./shared/components/query/QueryAndDownloadTabs";
+import formSubmit from "shared/lib/formSubmit";
 
 const queryStore = new QueryStore(window.location.href);
 
@@ -16,3 +17,6 @@ exposeComponentRenderer('renderQuerySelectorInModal', ()=><QueryModal store={que
 exposeComponentRenderer('renderQuerySelector', (props:{[k:string]:string|boolean|number})=>{
     return <QueryAndDownloadTabs {...props} store={queryStore} />
 });
+
+
+(window as any).formSubmit = formSubmit;
