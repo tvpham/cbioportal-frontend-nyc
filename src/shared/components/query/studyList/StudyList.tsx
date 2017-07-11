@@ -207,7 +207,7 @@ export default class StudyList extends QueryStoreComponent<IStudyListProps, void
 				tooltip: study.pmid && "PubMed",
 			},
 		];
-		if (this.store.isVirtualCohort(study.studyId)) {
+		if (this.store.isVirtualCohort(study.studyId) && !this.store.isTemporaryVirtualCohort(study.studyId)) {
 			links.push({
 				icon: 'trash',
 				tooltip: "Delete this cohort.",

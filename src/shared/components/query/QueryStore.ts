@@ -720,6 +720,10 @@ export class QueryStore
 		return !this.cancerStudyIdsSet.result[studyId];
 	}
 
+	public isTemporaryVirtualCohort(studyId:string):boolean {
+		return !this.temporaryVirtualCohortId.result || this.temporaryVirtualCohortId.result === studyId;
+	}
+
 	private isSingleStudySelected(shouldBeVirtualCohort:boolean) {
 		if (this.selectedStudyIds.length !== 1) {
 			return false;
