@@ -28,6 +28,7 @@ export default class DataTypePrioritySelector extends QueryStoreComponent<{}, {}
 					<this.DataTypePriorityRadio label='Mutation and CNA' state={{mutation: true, cna: true}}/>
 					<this.DataTypePriorityRadio label='Only Mutation' state={{mutation: true, cna: false}}/>
 					<this.DataTypePriorityRadio label='Only CNA' state={{mutation: false, cna: true}}/>
+					<this.DataTypePriorityRadio label='Protein' state={{mutation: false, cna: false}}/>
 				</FlexRow>
 
 			</FlexRow>
